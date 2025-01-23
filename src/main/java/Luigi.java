@@ -11,6 +11,14 @@ public class Luigi {
         }
     }
 
+    private static void deleteTask(int index) {
+        Task task = list.get(index);
+        list.remove(index);
+        System.out.println("Noted. I've disposed of this task:");
+        System.out.println("  " + task);
+        System.out.println("You now have " + list.size() + " tasks in your list");
+    }
+
     private static void addToDo(String description) {
         Task task = new Todo(description);
         list.add(task);
@@ -111,6 +119,15 @@ public class Luigi {
                         System.out.println("Correct example: event book club meeting " +
                             "/from Tuesday 3 p.m. /to Tuesday 5 p.m.");
                      }
+                    break;
+
+                case "delete":
+                    try {
+                        int index = Integer.parseInt(input.split(" ")[1]) - 1;
+                        deleteTask(index);
+                    } catch (Exception e) {
+                        System.out.println("Invalid index!");
+                    }
                     break;
 
                 default:
