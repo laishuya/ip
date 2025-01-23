@@ -7,7 +7,8 @@ public class Luigi {
     private static void addItem(String item) {
         Task task = new Task(item);
         list.add(task);
-        System.out.println("added: " + item);
+        System.out.println("Got it! I've added this task: ");
+        System.out.println("  " + task);
     }
 
     private static void printList() {
@@ -72,6 +73,18 @@ public class Luigi {
             else if (input.startsWith("unmark")) {
                 int index = Integer.parseInt(input.split(" ")[1]) - 1;
                 unmark(index);
+            }
+            else if (input.startsWith("todo")) {
+                String description = input.substring(5).trim();
+                addToDo(description);
+            }
+            else if (input.startsWith("deadline")) {
+                String[] parts = input.substring(9).trim().split(" /by ");
+                addDeadline(parts[0].trim(), parts[1].trim());
+            }
+            else if (input.startsWith("event")) {
+                String[] parts = input.substring(6).trim().split(" /from | /to ");
+                addEvent(parts[0].trim(), parts[1].trim(), parts[2].trim());
             }
             else {
                 addItem(input);
