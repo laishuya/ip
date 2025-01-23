@@ -17,6 +17,30 @@ public class Luigi {
         }
     }
 
+    private static void addToDo(String description) {
+        Task task = new Todo(description);
+        list.add(task);
+        System.out.println("Got it! I've added this task: ");
+        System.out.println("  " + task);
+        System.out.println("You now have " + list.size() + " tasks in your list");
+    }
+
+    private static void addDeadline(String description, String by) {
+        Task task = new Deadline(description, by);
+        list.add(task);
+        System.out.println("Got it! I've added this task: ");
+        System.out.println("  " + task);
+        System.out.println("You now have " + list.size() + " tasks in your list");
+    }
+
+    private static void addEvent(String description, String from, String to) {
+        Task task = new Event(description, from, to);
+        list.add(task);
+        System.out.println("Got it! I've added this task: ");
+        System.out.println("  " + task);
+        System.out.println("You now have " + list.size() + " tasks in your list");
+    }
+
     private static void mark(int index) {
         Task task = list.get(index);
         task.mark();
