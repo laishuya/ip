@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-
+import tasks.*;
 public class Luigi {
     private static ArrayList<Task> list = new ArrayList<>();
 
@@ -116,8 +116,8 @@ public class Luigi {
                         addEvent(eventParts[0].trim(), eventParts[1].trim(), eventParts[2].trim());
                     } catch (Exception e) {
                         System.out.println("Please input description, from (what time), to (what time)!");
-                        System.out.println("Correct example: event book club meeting " +
-                            "/from Tuesday 3 p.m. /to Tuesday 5 p.m.");
+                        System.out.println("Correct example: event book club meeting "
+                            + "/from Tuesday 3 p.m. /to Tuesday 5 p.m.");
                      }
                     break;
 
