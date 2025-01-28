@@ -1,10 +1,13 @@
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import tasks.Deadline;
 import tasks.Event;
 import java.io.File;
+import java.util.Locale;
 import java.util.Scanner;
 import tasks.Task;
 import tasks.Todo;
@@ -27,6 +30,9 @@ public class Luigi {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String[] parts = scanner.nextLine().split(" \\| ");
+                if (parts.length == 1) {
+                    break;
+                }
                 String command = parts[0];
                 boolean isDone = parts[1].equals("1");
                 Task task;
@@ -78,6 +84,27 @@ public class Luigi {
             printWriter.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private static void findAllTasksWithSameDate(String date) {
+        String inputFormat = "yyyy-MM-dd";
+        DateTimeFormatter format = DateTimeFormatter.ofPattern(inputFormat, Locale.ENGLISH);
+        LocalDate targetDate = LocalDate.parse(date, format);
+        for (Task task : list) {
+            if (task instanceof Deadline) {
+                Deadline deadline = (Deadline) task;
+                if (deadline.getLocalDate().equals(targetDate)) {
+                    System.out.println(deadline);
+                }
+            }
+            if (task instanceof Event) {
+                Event event = (Event) task;
+                if (event.getFromLocalDate().equals(targetDate)
+                        || event.getToLocalDate().equals(targetDate)) {
+                    System.out.println(event);
+                }
+            }
         }
     }
 
@@ -184,7 +211,7 @@ public class Luigi {
                     addDeadline(deadlineParts[0].trim(), deadlineParts[1].trim());
                 } catch (Exception e) {
                     System.out.println("Please input description and deadline!");
-                    System.out.println("Correct example: deadline return book /by tomorrow");
+                    System.out.println("Correct example: deadline return book /by yyyy-MM-dd HHmm");
                 }
                 break;
 
@@ -195,7 +222,7 @@ public class Luigi {
                 } catch (Exception e) {
                     System.out.println("Please input description, from (what time), to (what time)!");
                     System.out.println("Correct example: event book club meeting "
-                        + "/from Tuesday 3 p.m. /to Tuesday 5 p.m.");
+                        + "/from yyyy-MM-dd HHmm /to yyyy-MM-dd HHmm");
                  }
                 break;
 
@@ -205,6 +232,15 @@ public class Luigi {
                     deleteTask(index);
                 } catch (Exception e) {
                     System.out.println("Invalid index!");
+                }
+                break;
+
+            case "date":
+                try {
+                    String date = input.split(" ")[1].trim();
+                    findAllTasksWithSameDate(date);
+                } catch (Exception e) {
+                    System.out.println("Correct example: date yyyy-MM-dd format.");
                 }
                 break;
 
