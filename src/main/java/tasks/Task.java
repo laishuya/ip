@@ -12,12 +12,20 @@ public class Task {
         return (isDone ? "[X]" : "[ ]"); // mark done task with X
     }
 
+    public int getStatusNumber() {
+        return (isDone ? 1 : 0); // mark done task with 1
+    }
+
     public void mark() {
         this.isDone = true;
     }
 
     public void unmark() {
         this.isDone = false;
+    }
+
+    public String saveStringInFile() {
+        return "You should not see this";
     }
 
     @Override
