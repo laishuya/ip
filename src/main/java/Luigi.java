@@ -32,16 +32,28 @@ public class Luigi {
                 Task task;
                 switch (command) {
                 case "T":
+                    if (parts.length != 3) {
+                        System.out.println("Skipping corrupt line");
+                        continue;
+                    }
                     task = new Todo(parts[2]);
                     break;
                 case "D":
+                    if (parts.length != 4) {
+                        System.out.println("Skipping corrupt line");
+                        continue;
+                    }
                     task = new Deadline(parts[2], parts[3]);
                     break;
                 case "E":
+                    if (parts.length != 5) {
+                        System.out.println("Skipping corrupt line");
+                        continue;
+                    }
                     task = new Event(parts[2], parts[3], parts[4]);
                     break;
                 default:
-                    System.out.println("Invalid task type: " + command);
+                    System.out.println("Skipping corrupt task type: " + command);
                     continue;
                 }
                 if (isDone) {
