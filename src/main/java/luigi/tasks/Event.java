@@ -1,4 +1,4 @@
-package tasks;
+package luigi.tasks;
 
 import java.time.LocalDateTime;
 import java.time.LocalDate;
