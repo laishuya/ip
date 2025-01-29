@@ -1,4 +1,4 @@
-package tasks;
+package luigi.tasks;
 public class Todo extends Task {
     public Todo(String description) {
         super(description);
