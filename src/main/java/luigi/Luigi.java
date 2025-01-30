@@ -1,20 +1,6 @@
 package luigi;
 
-import luigi.tasks.Deadline;
-import luigi.tasks.Event;
-import luigi.tasks.Task;
-import luigi.tasks.Todo;
 import luigi.commands.Command;
-
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.io.IOException;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.io.File;
-import java.util.Locale;
-import java.util.Scanner;
 
 public class Luigi {
     private static String FILE_PATH ="./data/luigi.txt";
@@ -22,13 +8,18 @@ public class Luigi {
     private TaskList list;
     private Ui ui;
 
+    /**
+     * Loads data to initialise the Luigi chatbot.
+     *
+     * @param filePath Path to where the file data is stored.
+     */
     public Luigi(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         try {
             this.list = new TaskList(storage.loadFile());
         } catch (Exception e) {
-            System.out.println("placeholder");
+            System.out.println(e.getMessage());
         }
     }
 
