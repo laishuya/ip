@@ -16,10 +16,20 @@ public class Storage {
     private String filePath;
     private static ArrayList<Task> list = new ArrayList<>();
 
+    /**
+     * Initialises a Storage object that loads and saves tasks in the file.
+     *
+     * @param filePath Path to where the data file is stored.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads the tasks in the data file into an ArrayList.
+     *
+     * @return An ArrayList containing all the tasks in the save file.
+     */
     public ArrayList<Task> loadFile() {
         File file = new File(filePath);
         try {
@@ -79,6 +89,11 @@ public class Storage {
         return list;
     }
 
+    /**
+     * Saves data in the current TaskList into the data file.
+     *
+     * @param list TaskList containing the current tasks in the program.
+     */
     public void saveFile(TaskList list) {
         File file = new File(filePath);
         try {

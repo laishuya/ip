@@ -10,6 +10,9 @@ public class Ui {
         greetUser();
     }
 
+    /**
+     * Reads the next line of input entered.
+     */
     public String readCommand() {
         return scanner.nextLine().trim();
     }
@@ -22,6 +25,9 @@ public class Ui {
         System.out.println(message);
     }
 
+    /**
+     * Welcomes the user when Luigi is initialised.
+     */
     private void greetUser() {
         System.out.println("""
                 Hello, I'm Luigi! How can I help you?

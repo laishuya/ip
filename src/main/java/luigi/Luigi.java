@@ -23,6 +23,9 @@ public class Luigi {
         }
     }
 
+    /**
+     * Parses each line of user input until the user says "bye".
+     */
     public void run() {
         boolean isExit = false;
         while (!isExit) {

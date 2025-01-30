@@ -12,7 +12,6 @@ import java.util.Locale;
 
 public class TaskList {
     private ArrayList<Task> list;
-
     public TaskList(ArrayList<Task> list) {
         this.list = list;
     }
@@ -21,6 +20,12 @@ public class TaskList {
         return this.list;
     }
 
+    /**
+     * Find all task descriptions containing the same word.
+     *
+     * @param word The common keyword to find.
+     * @return A list of tasks containing the specified word.
+     */
     public ArrayList<Task> findTasksWithSameWord(String word) {
         ArrayList<Task> tasks = new ArrayList<>();
         for (Task task: list) {
@@ -31,6 +36,35 @@ public class TaskList {
         return tasks;
     }
 
+    /**
+     * Finds all tasks with the same date.
+     *
+     * @param date The common date the tasks should share.
+     */
+    public void findAllTasksWithSameDate(String date) {
+        String inputFormat = "yyyy-MM-dd";
+        DateTimeFormatter format = DateTimeFormatter.ofPattern(inputFormat, Locale.ENGLISH);
+        LocalDate targetDate = LocalDate.parse(date, format);
+        for (Task task : list) {
+            if (task instanceof Deadline) {
+                Deadline deadline = (Deadline) task;
+                if (deadline.getLocalDate().equals(targetDate)) {
+                    System.out.println(deadline);
+                }
+            }
+            if (task instanceof Event) {
+                Event event = (Event) task;
+                if (event.getFromLocalDate().equals(targetDate)
+                        || event.getToLocalDate().equals(targetDate)) {
+                    System.out.println(event);
+                }
+            }
+        }
+    }
+
+    /**
+     * Prints all the tasks in the list.
+     */
     public void printList() {
         System.out.println("Here are your tasks:");
         for (int i = 0; i < list.size(); i++) {
@@ -82,26 +116,5 @@ public class TaskList {
         task.unmark();
         System.out.println("Successfully unmarked!");
         System.out.println("  " + task);
-    }
-
-    public void findAllTasksWithSameDate(String date) {
-        String inputFormat = "yyyy-MM-dd";
-        DateTimeFormatter format = DateTimeFormatter.ofPattern(inputFormat, Locale.ENGLISH);
-        LocalDate targetDate = LocalDate.parse(date, format);
-        for (Task task : list) {
-            if (task instanceof Deadline) {
-                Deadline deadline = (Deadline) task;
-                if (deadline.getLocalDate().equals(targetDate)) {
-                    System.out.println(deadline);
-                }
-            }
-            if (task instanceof Event) {
-                Event event = (Event) task;
-                if (event.getFromLocalDate().equals(targetDate)
-                        || event.getToLocalDate().equals(targetDate)) {
-                    System.out.println(event);
-                }
-            }
-        }
     }
 }

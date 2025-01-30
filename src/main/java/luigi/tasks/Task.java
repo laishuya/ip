@@ -12,12 +12,18 @@ public class Task {
         return this.description;
     }
 
+    /**
+     * Marks done task with X.
+     */
     public String getStatusIcon() {
-        return (isDone ? "[X]" : "[ ]"); // mark done task with X
+        return (isDone ? "[X]" : "[ ]");
     }
 
+    /**
+     * Marks done task with 1.
+     */
     public int getStatusNumber() {
-        return (isDone ? 1 : 0); // mark done task with 1
+        return (isDone ? 1 : 0);
     }
 
     public void mark() {
@@ -28,6 +34,10 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Converts information of the Task into a string, to be saved in data file.
+     * Will never be called since only subclasses of Task are instantiated.
+     */
     public String saveStringInFile() {
         return "You should not see this";
     }

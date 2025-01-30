@@ -9,12 +9,26 @@ public class EventCommand extends Command {
     private final String from;
     private final String to;
 
+    /**
+     * Represents a command to create a task with start and end dates.
+     *
+     * @param description The task.
+     * @param from Start date of the task.
+     * @param to End date of the task.
+     */
     public EventCommand(String description, String from, String to) {
         this.description = description;
         this.from = from;
         this.to = to;
     }
 
+    /**
+     * Adds event to the TaskList.
+     *
+     * @param list The list of tasks.
+     * @param ui Ui object that deals with user interaction.
+     * @param storage Storage object that deals with loading and saving tasks.
+     */
     @Override
     public void execute(TaskList list, Ui ui, Storage storage) {
         list.addEvent(description, from, to);
