@@ -7,6 +7,9 @@ import luigi.Storage;
 public class UnmarkCommand extends Command {
     private final int index;
 
+    /**
+     * Represents a command to mark a task as completed.
+     */
     public UnmarkCommand(int index) {
         this.index = index;
     }

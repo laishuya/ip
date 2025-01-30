@@ -10,10 +10,22 @@ import java.util.ArrayList;
 public class FindCommand extends Command {
     private final String word;
 
+    /**
+     * Represents a command to find all tasks with a common word.
+     *
+     * @param word The keyword(s).
+     */
     public FindCommand(String word){
         this.word = word;
     }
 
+    /**
+     * Find all tasks with the common word(s).
+     *
+     * @param list The list of tasks.
+     * @param ui Ui object that deals with user interaction.
+     * @param storage Storage object that deals with loading and saving tasks.
+     */
     @Override
     public void execute(TaskList list, Ui ui, Storage storage) {
         ArrayList<Task> matchingTasks = list.findTasksWithSameWord(word);

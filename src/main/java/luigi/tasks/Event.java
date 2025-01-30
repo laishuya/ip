@@ -27,6 +27,9 @@ public class Event extends Task {
         return this.to.toLocalDate();
     }
 
+    /**
+     * Converts information of the Event into a string, to be saved in data file.
+     */
     @Override
     public String saveStringInFile() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern(INPUT_FORMAT, Locale.ENGLISH);
@@ -34,6 +37,9 @@ public class Event extends Task {
                 this.description, this.from.format(format), this.to.format(format));
     }
 
+    /**
+     * Returns the string information of the Event, to be displayed to users.
+     */
     @Override
     public String toString() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern(DISPLAY_FORMAT, Locale.ENGLISH);

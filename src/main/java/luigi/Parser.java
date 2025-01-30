@@ -13,6 +13,13 @@ import luigi.commands.UnmarkCommand;
 import luigi.commands.FindCommand;
 
 public class Parser {
+    /**
+     * Parses the first word entered by the user and returns the right command type.
+     *
+     * @param command The first word entered by the user.
+     * @param input The entire string entered by the user.
+     * @return The command type entered by the user.
+     */
     public static Command parse(String command, String input) throws Exception {
         switch (command) {
         case "list":
