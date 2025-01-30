@@ -21,6 +21,16 @@ public class TaskList {
         return this.list;
     }
 
+    public ArrayList<Task> findTasksWithSameWord(String word) {
+        ArrayList<Task> tasks = new ArrayList<>();
+        for (Task task: list) {
+            if (task.getDescription().contains(word)) {
+                tasks.add(task);
+            }
+        }
+        return tasks;
+    }
+
     public void printList() {
         System.out.println("Here are your tasks:");
         for (int i = 0; i < list.size(); i++) {

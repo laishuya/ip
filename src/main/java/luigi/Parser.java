@@ -1,16 +1,7 @@
 package luigi;
 
+import luigi.commands.*;
 import luigi.tasks.Task;
-import luigi.commands.Command;
-import luigi.commands.DateCommand;
-import luigi.commands.DeadlineCommand;
-import luigi.commands.DeleteCommand;
-import luigi.commands.EventCommand;
-import luigi.commands.ExitCommand;
-import luigi.commands.ListCommand;
-import luigi.commands.MarkCommand;
-import luigi.commands.ToDoCommand;
-import luigi.commands.UnmarkCommand;
 
 public class Parser {
     public static Command parse(String command, String input) throws Exception {
@@ -40,6 +31,9 @@ public class Parser {
             return new DateCommand(date);
         case "bye":
             return new ExitCommand();
+        case "find":
+            String word = input.substring(5).trim();
+            return new FindCommand(word);
         default:
             throw new Exception("Invalid command!");
         }
