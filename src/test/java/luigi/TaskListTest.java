@@ -1,9 +1,12 @@
 package luigi;
 
-import java.util.ArrayList;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
 
 public class TaskListTest {
     @Test
@@ -19,7 +22,6 @@ public class TaskListTest {
     @Test
     public void deleteTask_invalidIndex_exceptionThrown() {
         TaskList taskList = new TaskList(new ArrayList<>());
-        assertThrows(IndexOutOfBoundsException.class,
-                () -> taskList.deleteTask(0));
+        assertThrows(IndexOutOfBoundsException.class, () -> taskList.deleteTask(0));
     }
 }

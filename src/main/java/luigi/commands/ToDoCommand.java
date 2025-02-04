@@ -1,9 +1,12 @@
 package luigi.commands;
 
+import luigi.Storage;
 import luigi.TaskList;
 import luigi.Ui;
-import luigi.Storage;
 
+/**
+ * Represents a command to add a ToDo Task to the TaskList.
+ */
 public class ToDoCommand extends Command {
     private final String description;
 

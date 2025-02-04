@@ -1,9 +1,12 @@
 package luigi.commands;
 
+import luigi.Storage;
 import luigi.TaskList;
 import luigi.Ui;
-import luigi.Storage;
 
+/**
+ * Represents a command to mark a task as completed.
+ */
 public class MarkCommand extends Command {
     private final int index;
 

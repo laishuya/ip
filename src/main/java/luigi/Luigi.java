@@ -2,8 +2,14 @@ package luigi;
 
 import luigi.commands.Command;
 
+/**
+ * Represents Luigi the Chatbot, which is initialised with the given filepath.
+ * Luigi helps users to organise their tasks, by processing user command and carrying out different functionalities,
+ * such as adding, deleting, marking, unmarking and finding tasks.
+ *
+ */
 public class Luigi {
-    private static String FILE_PATH ="./data/luigi.txt";
+    private static String FILE_PATH = "./data/luigi.txt";
     private Storage storage;
     private TaskList list;
     private Ui ui;

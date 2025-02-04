@@ -1,9 +1,12 @@
 package luigi.commands;
 
+import luigi.Storage;
 import luigi.TaskList;
 import luigi.Ui;
-import luigi.Storage;
 
+/**
+ * Represents a command to add a Deadline task to the TaskList.
+ */
 public class DeadlineCommand extends Command {
     private final String description;
     private final String deadline;

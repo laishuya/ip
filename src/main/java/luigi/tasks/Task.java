@@ -1,8 +1,17 @@
 package luigi.tasks;
+
+/**
+ * Represents the base Task class, which the Deadline, Todo and Event subclasses extend from.
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Creates a Task object with the task description.
+     *
+     * @param description Details about the Task to accomplish.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;

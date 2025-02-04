@@ -1,5 +1,15 @@
 package luigi.tasks;
+
+/**
+ * Represents a Task that has to be done.
+ */
 public class Todo extends Task {
+
+    /**
+     * Creates a Todo task object that contains details about the Task to be completed.
+     *
+     * @param description More information about the Task.
+     */
     public Todo(String description) {
         super(description);
     }
