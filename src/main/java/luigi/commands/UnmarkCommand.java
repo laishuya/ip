@@ -1,9 +1,12 @@
 package luigi.commands;
 
+import luigi.Storage;
 import luigi.TaskList;
 import luigi.Ui;
-import luigi.Storage;
 
+/**
+ * Represents a command to unmark a Task as completed.
+ */
 public class UnmarkCommand extends Command {
     private final int index;
 

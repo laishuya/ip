@@ -2,9 +2,15 @@ package luigi;
 
 import java.util.Scanner;
 
+/**
+ * Interacts with the user by printing statements.
+ */
 public class Ui {
     private final Scanner scanner;
 
+    /**
+     * Constructs Ui object that greets the user and asks for user input.
+     */
     public Ui() {
         this.scanner = new Scanner(System.in);
         greetUser();
@@ -34,3 +40,4 @@ public class Ui {
                 """);
     }
 }
+

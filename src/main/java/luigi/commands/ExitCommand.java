@@ -1,9 +1,12 @@
 package luigi.commands;
 
+import luigi.Storage;
 import luigi.TaskList;
 import luigi.Ui;
-import luigi.Storage;
 
+/**
+ * Represents a command to exit the program.
+ */
 public class ExitCommand extends Command {
     /**
      * Exits the program.

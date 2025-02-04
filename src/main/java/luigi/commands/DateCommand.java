@@ -1,9 +1,12 @@
 package luigi.commands;
 
+import luigi.Storage;
 import luigi.TaskList;
 import luigi.Ui;
-import luigi.Storage;
 
+/**
+ * Represents a command to find all tasks that are on the same date.
+ */
 public class DateCommand extends Command {
     private final String description;
 

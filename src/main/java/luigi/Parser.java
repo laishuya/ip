@@ -6,12 +6,16 @@ import luigi.commands.DeadlineCommand;
 import luigi.commands.DeleteCommand;
 import luigi.commands.EventCommand;
 import luigi.commands.ExitCommand;
+import luigi.commands.FindCommand;
 import luigi.commands.ListCommand;
 import luigi.commands.MarkCommand;
 import luigi.commands.ToDoCommand;
 import luigi.commands.UnmarkCommand;
-import luigi.commands.FindCommand;
 
+/**
+ * Parses user input and returns a Command object to be executed by the Chatbot.
+ * If user input is invalid, an exception is thrown.
+ */
 public class Parser {
     /**
      * Parses the first word entered by the user and returns the right command type.

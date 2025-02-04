@@ -1,9 +1,12 @@
 package luigi.commands;
 
+import luigi.Storage;
 import luigi.TaskList;
 import luigi.Ui;
-import luigi.Storage;
 
+/**
+ * Represents a command to delete a task from the TaskList.
+ */
 public class DeleteCommand extends Command {
     private final int index;
 

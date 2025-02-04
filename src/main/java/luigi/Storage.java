@@ -1,10 +1,5 @@
 package luigi;
 
-import luigi.tasks.Deadline;
-import luigi.tasks.Event;
-import luigi.tasks.Task;
-import luigi.tasks.Todo;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,9 +7,18 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import luigi.tasks.Deadline;
+import luigi.tasks.Event;
+import luigi.tasks.Task;
+import luigi.tasks.Todo;
+
+/**
+ * Loads and saves user data from the data file stored on the computer.
+ * If the data file and directory are missing, then they will be created by the program.
+ */
 public class Storage {
-    private String filePath;
     private static ArrayList<Task> list = new ArrayList<>();
+    private String filePath;
 
     /**
      * Initialises a Storage object that loads and saves tasks in the file.

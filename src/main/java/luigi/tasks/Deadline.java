@@ -1,15 +1,18 @@
 package luigi.tasks;
 
-import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
+/**
+ * Represents a Task with a due date, which includes date, year and time.
+ */
 public class Deadline extends Task {
-    private LocalDateTime by;
-    private static final String INPUT_FORMAT = "yyyy-MM-dd HHmm";
     private static final String DISPLAY_FORMAT = "MMM dd yyyy HH:mm";
+    private static final String INPUT_FORMAT = "yyyy-MM-dd HHmm";
+    private LocalDateTime by;
 
     /**
      * Creates a Deadline object that contains the due date of the tasks.

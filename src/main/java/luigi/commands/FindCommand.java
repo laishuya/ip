@@ -1,12 +1,15 @@
 package luigi.commands;
 
-import luigi.tasks.Task;
-import luigi.TaskList;
-import luigi.Ui;
-import luigi.Storage;
-
 import java.util.ArrayList;
 
+import luigi.Storage;
+import luigi.TaskList;
+import luigi.Ui;
+import luigi.tasks.Task;
+
+/**
+ * Represents a command to find all tasks with the same keyword.
+ */
 public class FindCommand extends Command {
     private final String word;
 
@@ -15,7 +18,7 @@ public class FindCommand extends Command {
      *
      * @param word The keyword(s).
      */
-    public FindCommand(String word){
+    public FindCommand(String word) {
         this.word = word;
     }
 

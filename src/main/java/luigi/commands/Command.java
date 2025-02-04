@@ -1,9 +1,13 @@
 package luigi.commands;
 
+import luigi.Storage;
 import luigi.TaskList;
 import luigi.Ui;
-import luigi.Storage;
 
+/**
+ * Represents the type of command that the bot should execute.
+ * This is the base abstract class that other subclasses will extend.
+ */
 public abstract class Command {
     /**
      * Executes the command given by the user.

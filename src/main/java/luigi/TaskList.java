@@ -1,15 +1,19 @@
 package luigi;
 
-import luigi.tasks.Deadline;
-import luigi.tasks.Event;
-import luigi.tasks.Task;
-import luigi.tasks.Todo;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import luigi.tasks.Deadline;
+import luigi.tasks.Event;
+import luigi.tasks.Task;
+import luigi.tasks.Todo;
+
+/**
+ * Stores the user's Tasks in an ArrayList.
+ * Allows manipulation of the list, such as adding and deleting tasks.
+ */
 public class TaskList {
     private ArrayList<Task> list;
     public TaskList(ArrayList<Task> list) {
@@ -72,6 +76,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes the task in the specified index position.
+     *
+     * @param index The position of the task in the list.
+     */
     public void deleteTask(int index) {
         Task task = list.get(index);
         list.remove(index);
@@ -80,6 +89,11 @@ public class TaskList {
         System.out.println("You now have " + list.size() + " tasks in your list");
     }
 
+    /**
+     * Adds a ToDo Task to the list.
+     *
+     * @param description Details of the ToDo Task.
+     */
     public void addToDo(String description) {
         Task task = new Todo(description);
         list.add(task);
@@ -88,6 +102,12 @@ public class TaskList {
         System.out.println("You now have " + list.size() + " tasks in your list");
     }
 
+    /**
+     * Adds a Deadline Task to the list.
+     *
+     * @param description Details of the Deadline Task.
+     * @param by The due date of the Task.
+     */
     public void addDeadline(String description, String by) {
         Task task = new Deadline(description, by);
         list.add(task);
@@ -96,6 +116,13 @@ public class TaskList {
         System.out.println("You now have " + list.size() + " tasks in your list");
     }
 
+    /**
+     * Adds an Event Task to the list.
+     *
+     * @param description Details of the Event Task.
+     * @param from Start date and time of the task.
+     * @param to End date and time of the task.
+     */
     public void addEvent(String description, String from, String to) {
         Task task = new Event(description, from, to);
         list.add(task);
@@ -104,6 +131,11 @@ public class TaskList {
         System.out.println("You now have " + list.size() + " tasks in your list");
     }
 
+    /**
+     * Marks a Task as completed.
+     *
+     * @param index The position of the Task in the list.
+     */
     public void mark(int index) {
         Task task = list.get(index);
         task.mark();
@@ -111,6 +143,11 @@ public class TaskList {
         System.out.println("  " + task);
     }
 
+    /**
+     * Unmarks a Task as completed.
+     *
+     * @param index The position of the Task in the list.
+     */
     public void unmark(int index) {
         Task task = list.get(index);
         task.unmark();
