@@ -2,7 +2,7 @@ package luigi.commands;
 
 import luigi.Storage;
 import luigi.TaskList;
-import luigi.Ui;
+import luigi.ui.Ui;
 
 /**
  * Represents a command to mark a task as completed.

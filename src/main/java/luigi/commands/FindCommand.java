@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import luigi.Storage;
 import luigi.TaskList;
-import luigi.Ui;
+import luigi.ui.Ui;
 import luigi.tasks.Task;
 
 /**

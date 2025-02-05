@@ -1,4 +1,4 @@
-package luigi;
+package luigi.ui;
 
 import java.util.Scanner;
 

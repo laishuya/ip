@@ -2,7 +2,7 @@ package luigi.commands;
 
 import luigi.Storage;
 import luigi.TaskList;
-import luigi.Ui;
+import luigi.ui.Ui;
 
 /**
  * Represents the type of command that the bot should execute.

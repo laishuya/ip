@@ -1,6 +1,7 @@
 package luigi;
 
 import luigi.commands.Command;
+import luigi.ui.Ui;
 
 /**
  * Represents Luigi the Chatbot, which is initialised with the given filepath.
@@ -27,6 +28,13 @@ public class Luigi {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        return "Luigi heard: " + input;
     }
 
     /**

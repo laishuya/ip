@@ -2,7 +2,7 @@ package luigi.commands;
 
 import luigi.Storage;
 import luigi.TaskList;
-import luigi.Ui;
+import luigi.ui.Ui;
 
 /**
  * Represents a command to find all tasks that are on the same date.
