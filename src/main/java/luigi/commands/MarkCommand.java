@@ -5,28 +5,30 @@ import luigi.TaskList;
 import luigi.ui.Ui;
 
 /**
- * Represents a command to mark a task as completed.
+ * Represents a command to mark a Task as completed.
  */
 public class MarkCommand extends Command {
     private final int index;
 
     /**
-     * Represents a command to unmark a task as completed.
+     * Represents a command to mark a Task as completed.
      */
     public MarkCommand(int index) {
         this.index = index;
     }
 
     /**
-     * Unmarks task as completed.
+     * Marks Task as completed.
      *
-     * @param list The list of tasks.
+     * @param list The list of Tasks.
      * @param ui Ui object that deals with user interaction.
-     * @param storage Storage object that deals with loading and saving tasks.
+     * @param storage Storage object that deals with loading and saving Tasks.
+     * @return A string containing a Task marked as done.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage) {
-        list.mark(index);
+    public String execute(TaskList list, Ui ui, Storage storage) {
+        String responseToUser = list.mark(index);
         storage.saveFile(list);
+        return responseToUser;
     }
 }

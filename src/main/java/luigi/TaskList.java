@@ -25,10 +25,10 @@ public class TaskList {
     }
 
     /**
-     * Find all task descriptions containing the same word.
+     * Finds all Task descriptions containing the same word.
      *
      * @param word The common keyword to find.
-     * @return A list of tasks containing the specified word.
+     * @return A list of Tasks containing the specified word.
      */
     public ArrayList<Task> findTasksWithSameWord(String word) {
         ArrayList<Task> tasks = new ArrayList<>();
@@ -41,11 +41,13 @@ public class TaskList {
     }
 
     /**
-     * Finds all tasks with the same date.
+     * Finds all Tasks with the same date.
      *
-     * @param date The common date the tasks should share.
+     * @param date The common date the Tasks should share.
+     * @return A string of all the Tasks with the same date.
      */
-    public void findAllTasksWithSameDate(String date) {
+    public String findAllTasksWithSameDate(String date) {
+        StringBuilder sb = new StringBuilder();
         String inputFormat = "yyyy-MM-dd";
         DateTimeFormatter format = DateTimeFormatter.ofPattern(inputFormat, Locale.ENGLISH);
         LocalDate targetDate = LocalDate.parse(date, format);
@@ -53,53 +55,64 @@ public class TaskList {
             if (task instanceof Deadline) {
                 Deadline deadline = (Deadline) task;
                 if (deadline.getLocalDate().equals(targetDate)) {
-                    System.out.println(deadline);
+                    sb.append(deadline + "\n");
                 }
             }
             if (task instanceof Event) {
                 Event event = (Event) task;
                 if (event.getFromLocalDate().equals(targetDate)
                         || event.getToLocalDate().equals(targetDate)) {
-                    System.out.println(event);
+                    sb.append(event + "\n");
                 }
             }
         }
+        return sb.toString();
     }
 
     /**
-     * Prints all the tasks in the list.
+     * Makes a list of all Tasks currently in the TaskList.
+     *
+     * @return A string of all the Tasks in the TaskList.
      */
-    public void printList() {
-        System.out.println("Here are your tasks:");
+    public String getListToPrint() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are your tasks:\n");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println((i + 1) + ". " + list.get(i));
+            sb.append((i + 1) + ". " + list.get(i) + "\n");
         }
+        return sb.toString();
     }
 
     /**
-     * Deletes the task in the specified index position.
+     * Deletes the Task in the specified index position.
      *
      * @param index The position of the task in the list.
+     * @return A string of the Task that was deleted.
      */
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
+        StringBuilder sb = new StringBuilder();
         Task task = list.get(index);
         list.remove(index);
-        System.out.println("Noted. I've disposed of this task:");
-        System.out.println("  " + task);
-        System.out.println("You now have " + list.size() + " tasks in your list");
+        sb.append("Noted. I've disposed of this task:\n");
+        sb.append("  " + task + "\n");
+        sb.append("You now have " + list.size() + " tasks in your list");
+        return sb.toString();
     }
 
     /**
      * Adds a ToDo Task to the list.
      *
      * @param description Details of the ToDo Task.
+     * @return A string containing details of the ToDo Task.
      */
-    public void addToDo(String description) {
+    public String addToDo(String description) {
+        StringBuilder sb = new StringBuilder();
         Task task = new Todo(description);
         list.add(task);
-        System.out.println("Got it! I've added this task:");
-        System.out.println("  " + task);
-        System.out.println("You now have " + list.size() + " tasks in your list");
+        sb.append("Got it! I've added this task:\n");
+        sb.append("  " + task + "\n");
+        sb.append("You now have " + list.size() + " tasks in your list");
+        return sb.toString();
     }
 
     /**
@@ -107,51 +120,63 @@ public class TaskList {
      *
      * @param description Details of the Deadline Task.
      * @param by The due date of the Task.
+     * @return A string containing details of the Deadline Task.
      */
-    public void addDeadline(String description, String by) {
+    public String addDeadline(String description, String by) {
+        StringBuilder sb = new StringBuilder();
         Task task = new Deadline(description, by);
         list.add(task);
-        System.out.println("Got it! I've added this task:");
-        System.out.println("  " + task);
-        System.out.println("You now have " + list.size() + " tasks in your list");
+        sb.append("Got it! I've added this task:\n");
+        sb.append("  " + task + "\n");
+        sb.append("You now have " + list.size() + " tasks in your list");
+        return sb.toString();
     }
 
     /**
      * Adds an Event Task to the list.
      *
      * @param description Details of the Event Task.
-     * @param from Start date and time of the task.
-     * @param to End date and time of the task.
+     * @param from Start date and time of the Task.
+     * @param to End date and time of the Task.
+     * @return A string containing details of the Event Task.
      */
-    public void addEvent(String description, String from, String to) {
+    public String addEvent(String description, String from, String to) {
+        StringBuilder sb = new StringBuilder();
         Task task = new Event(description, from, to);
         list.add(task);
-        System.out.println("Got it! I've added this task:");
-        System.out.println("  " + task);
-        System.out.println("You now have " + list.size() + " tasks in your list");
+        sb.append("Got it! I've added this task:\n");
+        sb.append("  " + task + "\n");
+        sb.append("You now have " + list.size() + " tasks in your list");
+        return sb.toString();
     }
 
     /**
      * Marks a Task as completed.
      *
      * @param index The position of the Task in the list.
+     * @return A string of the marked Task.
      */
-    public void mark(int index) {
+    public String mark(int index) {
+        StringBuilder sb = new StringBuilder();
         Task task = list.get(index);
         task.mark();
-        System.out.println("Successfully marked!");
-        System.out.println("  " + task);
+        sb.append("Successfully marked!\n");
+        sb.append("  " + task);
+        return sb.toString();
     }
 
     /**
      * Unmarks a Task as completed.
      *
      * @param index The position of the Task in the list.
+     * @return A string of the unmarked Task.
      */
-    public void unmark(int index) {
+    public String unmark(int index) {
+        StringBuilder sb = new StringBuilder();
         Task task = list.get(index);
         task.unmark();
-        System.out.println("Successfully unmarked!");
-        System.out.println("  " + task);
+        sb.append("Successfully unmarked!\n");
+        sb.append("  " + task);
+        return sb.toString();
     }
 }

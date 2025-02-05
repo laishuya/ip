@@ -9,23 +9,17 @@ import luigi.ui.Ui;
  */
 public class ExitCommand extends Command {
     /**
-     * Exits the program.
+     * Tells MainWindow to exit the program.
      *
      * @param list The list of tasks.
      * @param ui Ui object that deals with user interaction.
      * @param storage Storage object that deals with loading and saving tasks.
+     * @return A string telling MainWindow to close the program.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage) {
+    public String execute(TaskList list, Ui ui, Storage storage) {
         storage.saveFile(list);
-        ui.sayMessage("Bye!");
-    }
-
-    /**
-     * Tells the chatbot if it should exit the program.
-     */
-    @Override
-    public boolean isExitCommand() {
-        return true;
+        return "Bye!";
     }
 }
+

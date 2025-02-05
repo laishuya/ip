@@ -27,17 +27,11 @@ public class Ui {
         this.scanner.close();
     }
 
-    public void sayMessage(String message) {
-        System.out.println(message);
-    }
-
     /**
      * Welcomes the user when Luigi is initialised.
      */
     private void greetUser() {
-        System.out.println("""
-                Hello, I'm Luigi! How can I help you?
-                """);
+        System.out.println("Hello, I'm Luigi!\nHow can I help you?");
     }
 }
 

@@ -25,10 +25,12 @@ public class DateCommand extends Command {
      * @param list The list of tasks.
      * @param ui Ui object that deals with user interaction.
      * @param storage Storage object that deals with loading and saving tasks.
+     * @return A string with all the tasks on the same date.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage) {
-        list.findAllTasksWithSameDate(description);
+    public String execute(TaskList list, Ui ui, Storage storage) {
+        String responseToUser = list.findAllTasksWithSameDate(description);
         storage.saveFile(list);
+        return responseToUser;
     }
 }

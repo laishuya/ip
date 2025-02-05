@@ -9,15 +9,16 @@ import luigi.ui.Ui;
  */
 public class ListCommand extends Command {
     /**
-     * Prints all tasks in the TaskList.
+     * Prints all Tasks in the TaskList.
      *
-     * @param list The list of tasks.
+     * @param list The list of Tasks.
      * @param ui Ui object that deals with user interaction.
-     * @param storage Storage object that deals with loading and saving tasks.
+     * @param storage Storage object that deals with loading and saving Tasks.
+     * @return A string containing all the Tasks in TaskList.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage) {
-        list.printList();
+    public String execute(TaskList list, Ui ui, Storage storage) {
+        return list.getListToPrint();
     }
 }
 

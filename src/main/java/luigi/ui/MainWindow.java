@@ -1,5 +1,7 @@
 package luigi.ui;
 
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -7,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
+import javafx.util.Duration;
 import luigi.Luigi;
 
 /**
@@ -25,12 +27,14 @@ public class MainWindow extends AnchorPane {
 
     private Luigi luigi;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image luigiImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Mario.png"));
+    private Image luigiImage = new Image(this.getClass().getResourceAsStream("/images/Luigi.png"));
 
     @FXML
     public void initialize() {
+        String greeting = "Hello! I'm Luigi!\nHow can I help you?";
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().add(DialogBox.getLuigiDialog(greeting, luigiImage));
     }
 
     /** Injects the Duke instance */
@@ -40,7 +44,7 @@ public class MainWindow extends AnchorPane {
 
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * the dialog container. Clears the user input after processing. Exits program if user types "bye".
      */
     @FXML
     private void handleUserInput() {
@@ -51,6 +55,11 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getLuigiDialog(response, luigiImage)
         );
         userInput.clear();
+        if (response.equals("Bye!")) {
+            PauseTransition delay = new PauseTransition(Duration.seconds(1));
+            delay.setOnFinished(event -> Platform.exit());
+            delay.play();
+        }
     }
 }
 
