@@ -1,10 +1,11 @@
 package luigi;
 
 import luigi.commands.Command;
+import luigi.ui.Ui;
 
 /**
  * Represents Luigi the Chatbot, which is initialised with the given filepath.
- * Luigi helps users to organise their tasks, by processing user command and carrying out different functionalities,
+ * Luigi helps users to organise their tasks, by processing user commands and carrying out different functionalities,
  * such as adding, deleting, marking, unmarking and finding tasks.
  *
  */
@@ -30,26 +31,18 @@ public class Luigi {
     }
 
     /**
-     * Parses each line of user input until the user says "bye".
+     * Generates a response to the user's chat message.
      */
-    public void run() {
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String input = ui.readCommand();
-                String commandType = input.split(" ")[0];
-                Command command = Parser.parse(commandType, input);
-                command.execute(list, ui, storage);
-                isExit = command.isExitCommand();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+    public String getResponse(String input) {
+        try {
+            String commandType = input.split(" ")[0];
+            Command command = Parser.parse(commandType, input);
+            String commandOutput = command.execute(list, ui, storage);
+            return commandOutput;
+        } catch (Exception e) {
+            String errorMessage = e.getMessage();
+            storage.saveFile(this.list);
+            return errorMessage;
         }
-        ui.closeScanner();
-        storage.saveFile(this.list);
-    }
-
-    public static void main(String[] args) {
-        new Luigi(FILE_PATH).run();
     }
 }

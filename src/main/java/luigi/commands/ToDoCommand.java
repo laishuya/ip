@@ -2,7 +2,7 @@ package luigi.commands;
 
 import luigi.Storage;
 import luigi.TaskList;
-import luigi.Ui;
+import luigi.ui.Ui;
 
 /**
  * Represents a command to add a ToDo Task to the TaskList.
@@ -20,15 +20,17 @@ public class ToDoCommand extends Command {
     }
 
     /**
-     * Adds Task to the TaskList.
+     * Adds a ToDo Task to the TaskList.
      *
      * @param list The list of tasks.
      * @param ui Ui object that deals with user interaction.
      * @param storage Storage object that deals with loading and saving tasks.
+     * @return A string representing a Task to be completed in the future.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage) {
-        list.addToDo(description);
+    public String execute(TaskList list, Ui ui, Storage storage) {
+        String responseToUser = list.addToDo(description);
         storage.saveFile(list);
+        return responseToUser;
     }
 }
