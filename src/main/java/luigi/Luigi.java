@@ -12,7 +12,7 @@ import luigi.ui.Ui;
 public class Luigi {
     private static String FILE_PATH = "./data/luigi.txt";
     private Storage storage;
-    private TaskList list;
+    private TaskList tasks;
     private Ui ui;
 
     /**
@@ -24,7 +24,7 @@ public class Luigi {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         try {
-            this.list = new TaskList(storage.loadFile());
+            this.tasks = new TaskList(storage.loadFile());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -37,11 +37,11 @@ public class Luigi {
         try {
             String commandType = input.split(" ")[0];
             Command command = Parser.parse(commandType, input);
-            String commandOutput = command.execute(list, ui, storage);
+            String commandOutput = command.execute(tasks, ui, storage);
             return commandOutput;
         } catch (Exception e) {
             String errorMessage = e.getMessage();
-            storage.saveFile(this.list);
+            storage.saveFile(this.tasks);
             return errorMessage;
         }
     }

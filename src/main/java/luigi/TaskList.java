@@ -15,13 +15,13 @@ import luigi.tasks.Todo;
  * Allows manipulation of the list, such as adding and deleting tasks.
  */
 public class TaskList {
-    private ArrayList<Task> list;
+    private ArrayList<Task> tasks;
     public TaskList(ArrayList<Task> list) {
-        this.list = list;
+        this.tasks = list;
     }
 
     public ArrayList<Task> getTasks() {
-        return this.list;
+        return this.tasks;
     }
 
     /**
@@ -32,7 +32,7 @@ public class TaskList {
      */
     public ArrayList<Task> findTasksWithSameWord(String word) {
         ArrayList<Task> tasks = new ArrayList<>();
-        for (Task task: list) {
+        for (Task task: this.tasks) {
             if (task.getDescription().contains(word)) {
                 tasks.add(task);
             }
@@ -51,18 +51,18 @@ public class TaskList {
         String inputFormat = "yyyy-MM-dd";
         DateTimeFormatter format = DateTimeFormatter.ofPattern(inputFormat, Locale.ENGLISH);
         LocalDate targetDate = LocalDate.parse(date, format);
-        for (Task task : list) {
+        for (Task task : tasks) {
             if (task instanceof Deadline) {
                 Deadline deadline = (Deadline) task;
                 if (deadline.getLocalDate().equals(targetDate)) {
-                    sb.append(deadline + "\n");
+                    sb.append(deadline + System.lineSeparator());
                 }
             }
             if (task instanceof Event) {
                 Event event = (Event) task;
                 if (event.getFromLocalDate().equals(targetDate)
                         || event.getToLocalDate().equals(targetDate)) {
-                    sb.append(event + "\n");
+                    sb.append(event + System.lineSeparator());
                 }
             }
         }
@@ -76,9 +76,9 @@ public class TaskList {
      */
     public String getListToPrint() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Here are your tasks:\n");
-        for (int i = 0; i < list.size(); i++) {
-            sb.append((i + 1) + ". " + list.get(i) + "\n");
+        sb.append("Here are your tasks:" + System.lineSeparator());
+        for (int i = 0; i < tasks.size(); i++) {
+            sb.append((i + 1) + ". " + tasks.get(i) + System.lineSeparator());
         }
         return sb.toString();
     }
@@ -91,11 +91,11 @@ public class TaskList {
      */
     public String deleteTask(int index) {
         StringBuilder sb = new StringBuilder();
-        Task task = list.get(index);
-        list.remove(index);
-        sb.append("Noted. I've disposed of this task:\n");
-        sb.append("  " + task + "\n");
-        sb.append("You now have " + list.size() + " tasks in your list");
+        Task task = tasks.get(index);
+        tasks.remove(index);
+        sb.append("Noted. I've disposed of this task:" + System.lineSeparator());
+        sb.append("  " + task + System.lineSeparator());
+        sb.append("You now have " + tasks.size() + " tasks in your list");
         return sb.toString();
     }
 
@@ -108,10 +108,10 @@ public class TaskList {
     public String addToDo(String description) {
         StringBuilder sb = new StringBuilder();
         Task task = new Todo(description);
-        list.add(task);
-        sb.append("Got it! I've added this task:\n");
-        sb.append("  " + task + "\n");
-        sb.append("You now have " + list.size() + " tasks in your list");
+        tasks.add(task);
+        sb.append("Got it! I've added this task:)" + System.lineSeparator());
+        sb.append("  " + task + System.lineSeparator());
+        sb.append("You now have " + tasks.size() + " tasks in your list");
         return sb.toString();
     }
 
@@ -125,10 +125,10 @@ public class TaskList {
     public String addDeadline(String description, String by) {
         StringBuilder sb = new StringBuilder();
         Task task = new Deadline(description, by);
-        list.add(task);
-        sb.append("Got it! I've added this task:\n");
-        sb.append("  " + task + "\n");
-        sb.append("You now have " + list.size() + " tasks in your list");
+        tasks.add(task);
+        sb.append("Got it! I've added this task:" + System.lineSeparator());
+        sb.append("  " + task + System.lineSeparator());
+        sb.append("You now have " + tasks.size() + " tasks in your list");
         return sb.toString();
     }
 
@@ -143,10 +143,10 @@ public class TaskList {
     public String addEvent(String description, String from, String to) {
         StringBuilder sb = new StringBuilder();
         Task task = new Event(description, from, to);
-        list.add(task);
-        sb.append("Got it! I've added this task:\n");
-        sb.append("  " + task + "\n");
-        sb.append("You now have " + list.size() + " tasks in your list");
+        tasks.add(task);
+        sb.append("Got it! I've added this task:" + System.lineSeparator());
+        sb.append("  " + task + System.lineSeparator());
+        sb.append("You now have " + tasks.size() + " tasks in your list");
         return sb.toString();
     }
 
@@ -158,9 +158,9 @@ public class TaskList {
      */
     public String mark(int index) {
         StringBuilder sb = new StringBuilder();
-        Task task = list.get(index);
+        Task task = tasks.get(index);
         task.mark();
-        sb.append("Successfully marked!\n");
+        sb.append("Successfully marked!" + System.lineSeparator());
         sb.append("  " + task);
         return sb.toString();
     }
@@ -173,9 +173,9 @@ public class TaskList {
      */
     public String unmark(int index) {
         StringBuilder sb = new StringBuilder();
-        Task task = list.get(index);
+        Task task = tasks.get(index);
         task.unmark();
-        sb.append("Successfully unmarked!\n");
+        sb.append("Successfully unmarked!" + System.lineSeparator());
         sb.append("  " + task);
         return sb.toString();
     }

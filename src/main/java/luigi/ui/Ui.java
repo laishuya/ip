@@ -31,7 +31,7 @@ public class Ui {
      * Welcomes the user when Luigi is initialised.
      */
     private void greetUser() {
-        System.out.println("Hello, I'm Luigi!\nHow can I help you?");
+        System.out.println("Hello, I'm Luigi!" + System.lineSeparator() + "How can I help you?");
     }
 }
 

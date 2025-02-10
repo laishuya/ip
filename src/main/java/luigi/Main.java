@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import luigi.ui.MainWindow;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for Luigi using FXML.
  */
 public class Main extends Application {
     private static String FILE_PATH = "./data/luigi.txt";

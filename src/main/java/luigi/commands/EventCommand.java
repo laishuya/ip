@@ -9,20 +9,20 @@ import luigi.ui.Ui;
  */
 public class EventCommand extends Command {
     private final String description;
-    private final String from;
-    private final String to;
+    private final String startDate;
+    private final String endDate;
 
     /**
      * Represents a command to create a task with start and end dates.
      *
      * @param description The task.
-     * @param from Start date of the task.
-     * @param to End date of the task.
+     * @param startDate Start date of the task.
+     * @param endDate End date of the task.
      */
-    public EventCommand(String description, String from, String to) {
+    public EventCommand(String description, String startDate, String endDate) {
         this.description = description;
-        this.from = from;
-        this.to = to;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     /**
@@ -35,7 +35,7 @@ public class EventCommand extends Command {
      */
     @Override
     public String execute(TaskList list, Ui ui, Storage storage) {
-        String responseToUser = list.addEvent(description, from, to);
+        String responseToUser = list.addEvent(description, startDate, endDate);
         storage.saveFile(list);
         return responseToUser;
     }

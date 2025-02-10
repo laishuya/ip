@@ -34,10 +34,10 @@ public class FindCommand extends Command {
     public String execute(TaskList list, Ui ui, Storage storage) {
         StringBuilder sb = new StringBuilder();
         ArrayList<Task> matchingTasks = list.findTasksWithSameWord(word);
-        sb.append("Here are the matching tasks in your list:\n");
+        sb.append("Here are the matching tasks in your list:" + System.lineSeparator());
         int index = 1;
         for (Task task : matchingTasks) {
-            sb.append(index + ". " + task + "\n");
+            sb.append(index + ". " + task + System.lineSeparator());
             index++;
         }
         return sb.toString();
