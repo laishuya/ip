@@ -77,8 +77,8 @@ public class TaskList {
      * @return A string of all the Tasks in the TaskList.
      */
     public String getListToPrint() {
-        return "Here are your tasks:" + System.lineSeparator() +
-                IntStream.range(0, tasks.size())
+        return "Here are your tasks:" + System.lineSeparator()
+                + IntStream.range(0, tasks.size())
                         .mapToObj(i -> (i + 1) + ". " + tasks.get(i))
                         .collect(Collectors.joining(System.lineSeparator()));
     }
