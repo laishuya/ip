@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import luigi.tasks.Deadline;
 import luigi.tasks.Event;
@@ -77,10 +75,12 @@ public class TaskList {
      * @return A string of all the Tasks in the TaskList.
      */
     public String getListToPrint() {
-        return "Here are your tasks:" + System.lineSeparator()
-                + IntStream.range(0, tasks.size())
-                        .mapToObj(i -> (i + 1) + ". " + tasks.get(i))
-                        .collect(Collectors.joining(System.lineSeparator()));
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are your tasks:" + System.lineSeparator());
+        for (int i = 0; i < tasks.size(); i++) {
+            sb.append((i + 1) + ". " + tasks.get(i) + System.lineSeparator());
+        }
+        return sb.toString();
     }
 
     /**
