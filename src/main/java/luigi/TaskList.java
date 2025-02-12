@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import luigi.tasks.Deadline;
 import luigi.tasks.Event;
@@ -77,12 +79,10 @@ public class TaskList {
      * @return A string of all the Tasks in the TaskList.
      */
     public String getListToPrint() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Here are your tasks:" + System.lineSeparator());
-        for (int i = 0; i < tasks.size(); i++) {
-            sb.append((i + 1) + ". " + tasks.get(i) + System.lineSeparator());
-        }
-        return sb.toString();
+        return "Here are your tasks:" + System.lineSeparator()
+                + IntStream.range(0, tasks.size())
+                .mapToObj(i -> (i + 1) + ". " + tasks.get(i))
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     /**
@@ -122,14 +122,14 @@ public class TaskList {
      * Adds a Deadline Task to the list.
      *
      * @param description Details of the Deadline Task.
-     * @param by The due date of the Task.
+     * @param deadline The due date of the Task.
      * @return A string containing details of the Deadline Task.
      */
-    public String addDeadline(String description, String by) {
+    public String addDeadline(String description, String deadline) {
         assert description != null : "Description cannot be null";
-        assert by != null : "Due date cannot be null";
+        assert deadline != null : "Due date cannot be null";
         StringBuilder sb = new StringBuilder();
-        Task task = new Deadline(description, by);
+        Task task = new Deadline(description, deadline);
         tasks.add(task);
         sb.append("Got it! I've added this task:" + System.lineSeparator());
         sb.append("  " + task + System.lineSeparator());
@@ -141,16 +141,16 @@ public class TaskList {
      * Adds an Event Task to the list.
      *
      * @param description Details of the Event Task.
-     * @param from Start date and time of the Task.
-     * @param to End date and time of the Task.
+     * @param startDate Start date and time of the Task.
+     * @param endDate End date and time of the Task.
      * @return A string containing details of the Event Task.
      */
-    public String addEvent(String description, String from, String to) {
+    public String addEvent(String description, String startDate, String endDate) {
         assert description != null : "Description cannot be null";
-        assert from != null : "Start date cannot be null";
-        assert to != null : "End date cannot be null";
+        assert startDate != null : "Start date cannot be null";
+        assert endDate != null : "End date cannot be null";
         StringBuilder sb = new StringBuilder();
-        Task task = new Event(description, from, to);
+        Task task = new Event(description, startDate, endDate);
         tasks.add(task);
         sb.append("Got it! I've added this task:" + System.lineSeparator());
         sb.append("  " + task + System.lineSeparator());
