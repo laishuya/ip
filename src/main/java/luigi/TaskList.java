@@ -31,6 +31,7 @@ public class TaskList {
      * @return A list of Tasks containing the specified word.
      */
     public ArrayList<Task> findTasksWithSameWord(String word) {
+        assert word != null : "Word cannot be null";
         ArrayList<Task> tasks = new ArrayList<>();
         for (Task task: this.tasks) {
             if (task.getDescription().contains(word)) {
@@ -47,6 +48,7 @@ public class TaskList {
      * @return A string of all the Tasks with the same date.
      */
     public String findAllTasksWithSameDate(String date) {
+        assert date != null : "Date cannot be null";
         StringBuilder sb = new StringBuilder();
         String inputFormat = "yyyy-MM-dd";
         DateTimeFormatter format = DateTimeFormatter.ofPattern(inputFormat, Locale.ENGLISH);
@@ -106,6 +108,7 @@ public class TaskList {
      * @return A string containing details of the ToDo Task.
      */
     public String addToDo(String description) {
+        assert description != null : "Description cannot be null";
         StringBuilder sb = new StringBuilder();
         Task task = new Todo(description);
         tasks.add(task);
@@ -123,6 +126,8 @@ public class TaskList {
      * @return A string containing details of the Deadline Task.
      */
     public String addDeadline(String description, String by) {
+        assert description != null : "Description cannot be null";
+        assert by != null : "Due date cannot be null";
         StringBuilder sb = new StringBuilder();
         Task task = new Deadline(description, by);
         tasks.add(task);
@@ -141,6 +146,9 @@ public class TaskList {
      * @return A string containing details of the Event Task.
      */
     public String addEvent(String description, String from, String to) {
+        assert description != null : "Description cannot be null";
+        assert from != null : "Start date cannot be null";
+        assert to != null : "End date cannot be null";
         StringBuilder sb = new StringBuilder();
         Task task = new Event(description, from, to);
         tasks.add(task);
