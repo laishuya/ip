@@ -1,6 +1,7 @@
 package luigi;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -44,6 +45,47 @@ public class TaskList {
     }
 
     /**
+     * Returns a string of upcoming Deadlines or Events occurring within the next 'hoursAhead' hours.
+     *
+     * @param hoursAhead Number of hours ahead to look for upcoming tasks.
+     * @return A formatted string of upcoming tasks.
+     */
+    public String getReminders(int hoursAhead) {
+        StringBuilder sb = new StringBuilder();
+        LocalDateTime currentTime = LocalDateTime.now();
+        LocalDateTime reminderThreshold = currentTime.plusHours(hoursAhead);
+        int index = 0;
+        sb.append("Here are your tasks due within " + hoursAhead + " hours:" + System.lineSeparator());
+
+        for (Task task : tasks) {
+            // Check for uncompleted Tasks only
+            if (task.getStatusNumber() == 1) {
+                continue;
+            }
+            if (task instanceof Deadline) {
+                Deadline deadlineTask = (Deadline) task;
+                if (!deadlineTask.getLocalDateTimeOfDeadline().isAfter(currentTime)) {
+                    continue;
+                }
+                if (!deadlineTask.getLocalDateTimeOfDeadline().isBefore(reminderThreshold)) {
+                    continue;
+                }
+                index++;
+                sb.append(index + ". " + deadlineTask.toString() + System.lineSeparator());
+            }
+            if (task instanceof Event) {
+                Event eventTask = (Event) task;
+                if (!eventTask.getEndDateTime().isBefore(reminderThreshold)) {
+                    continue;
+                }
+                index++;
+                sb.append(index + ". " + eventTask.toString() + System.lineSeparator());
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
      * Finds all Tasks with the same date.
      *
      * @param date The common date the Tasks should share.
@@ -58,14 +100,14 @@ public class TaskList {
         for (Task task : tasks) {
             if (task instanceof Deadline) {
                 Deadline deadline = (Deadline) task;
-                if (deadline.getLocalDate().equals(targetDate)) {
+                if (deadline.getLocalDateOfDeadline().equals(targetDate)) {
                     sb.append(deadline + System.lineSeparator());
                 }
             }
             if (task instanceof Event) {
                 Event event = (Event) task;
-                if (event.getFromLocalDate().equals(targetDate)
-                        || event.getToLocalDate().equals(targetDate)) {
+                if (event.getStartDate().equals(targetDate)
+                        || event.getEndDate().equals(targetDate)) {
                     sb.append(event + System.lineSeparator());
                 }
             }

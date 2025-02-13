@@ -5,7 +5,7 @@ import luigi.TaskList;
 import luigi.ui.Ui;
 
 /**
- * Represents a command to list all tasks in the TaskList.
+ * Represents a command to list all Tasks in the TaskList.
  */
 public class ListCommand extends Command {
     /**

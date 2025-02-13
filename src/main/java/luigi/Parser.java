@@ -1,16 +1,6 @@
 package luigi;
 
-import luigi.commands.Command;
-import luigi.commands.DateCommand;
-import luigi.commands.DeadlineCommand;
-import luigi.commands.DeleteCommand;
-import luigi.commands.EventCommand;
-import luigi.commands.ExitCommand;
-import luigi.commands.FindCommand;
-import luigi.commands.ListCommand;
-import luigi.commands.MarkCommand;
-import luigi.commands.ToDoCommand;
-import luigi.commands.UnmarkCommand;
+import luigi.commands.*;
 
 /**
  * Parses user input and returns a Command object to be executed by the Chatbot.
@@ -54,6 +44,9 @@ public class Parser {
         case "find":
             String word = input.substring(5).trim();
             return new FindCommand(word);
+        case "remind":
+            int hoursAhead = Integer.parseInt(input.substring(7).trim());
+            return new RemindCommand(hoursAhead);
         default:
             throw new Exception("Invalid command!");
         }
