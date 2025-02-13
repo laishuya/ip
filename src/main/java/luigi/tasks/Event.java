@@ -12,30 +12,50 @@ import java.util.Locale;
 public class Event extends Task {
     private static final String INPUT_FORMAT = "yyyy-MM-dd HHmm";
     private static final String DISPLAY_FORMAT = "MMM dd yyyy HH:mm";
-    private LocalDateTime from;
-    private LocalDateTime to;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
     /**
      * Creates an Event object, which represents the start and end time of the event.
      *
      * @param description Details of the Event Task.
-     * @param from Start date of the event task.
-     * @param to End date of the event task.
+     * @param startDate Start date of the event task.
+     * @param endDate End date of the event task.
      * @throws DateTimeParseException
      */
-    public Event(String description, String from, String to) throws DateTimeParseException {
+    public Event(String description, String startDate, String endDate) throws DateTimeParseException {
         super(description);
         DateTimeFormatter format = DateTimeFormatter.ofPattern(INPUT_FORMAT, Locale.ENGLISH);
-        this.from = LocalDateTime.parse(from, format);
-        this.to = LocalDateTime.parse(to, format);
+        this.startDate = LocalDateTime.parse(startDate, format);
+        this.endDate = LocalDateTime.parse(endDate, format);
     }
 
-    public LocalDate getFromLocalDate() {
-        return this.from.toLocalDate();
+    /**
+     * Returns the start date of the Event Task.
+     */
+    public LocalDate getStartDate() {
+        return this.startDate.toLocalDate();
     }
 
-    public LocalDate getToLocalDate() {
-        return this.to.toLocalDate();
+    /**
+     * Returns the start date and time of the Event Task.
+     */
+    public LocalDateTime getStartDateTime() {
+        return this.startDate;
+    }
+
+    /**
+     * Returns the end date of the Event Task.
+     */
+    public LocalDate getEndDate() {
+        return this.endDate.toLocalDate();
+    }
+
+    /**
+     * Returns the end date and time of the Event Task.
+     */
+    public LocalDateTime getEndDateTime() {
+        return this.endDate;
     }
 
     /**
@@ -45,7 +65,7 @@ public class Event extends Task {
     public String saveStringInFile() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern(INPUT_FORMAT, Locale.ENGLISH);
         return String.format("%s | %d | %s | %s | %s", "E", getStatusNumber(),
-                this.description, this.from.format(format), this.to.format(format));
+                this.description, this.startDate.format(format), this.endDate.format(format));
     }
 
     /**
@@ -55,6 +75,6 @@ public class Event extends Task {
     public String toString() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern(DISPLAY_FORMAT, Locale.ENGLISH);
         return "[E]" + super.toString() + " (from: "
-                + this.from.format(format) + " to: " + this.to.format(format) + ")";
+                + this.startDate.format(format) + " to: " + this.endDate.format(format) + ")";
     }
 }

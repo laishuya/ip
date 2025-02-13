@@ -12,22 +12,32 @@ import java.util.Locale;
 public class Deadline extends Task {
     private static final String DISPLAY_FORMAT = "MMM dd yyyy HH:mm";
     private static final String INPUT_FORMAT = "yyyy-MM-dd HHmm";
-    private LocalDateTime by;
+    private LocalDateTime deadline;
 
     /**
      * Creates a Deadline object that contains the due date of the tasks.
      *
      * @param description Task description.
-     * @param by The due date of the task.
+     * @param deadline The due date of the task.
      */
-    public Deadline(String description, String by) throws DateTimeParseException {
+    public Deadline(String description, String deadline) throws DateTimeParseException {
         super(description);
         DateTimeFormatter format = DateTimeFormatter.ofPattern(INPUT_FORMAT, Locale.ENGLISH);
-        this.by = LocalDateTime.parse(by, format);
+        this.deadline = LocalDateTime.parse(deadline, format);
     }
 
-    public LocalDate getLocalDate() {
-        return this.by.toLocalDate();
+    /**
+     * Returns the due date of the Deadline Task.
+     */
+    public LocalDate getLocalDateOfDeadline() {
+        return this.deadline.toLocalDate();
+    }
+
+    /**
+     * Returns the due date and time of the Dealdine Task.
+     */
+    public LocalDateTime getLocalDateTimeOfDeadline() {
+        return this.deadline;
     }
 
     /**
@@ -37,7 +47,7 @@ public class Deadline extends Task {
     public String saveStringInFile() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern(INPUT_FORMAT, Locale.ENGLISH);
         return String.format("%s | %d | %s | %s", "D", getStatusNumber(),
-                this.description, this.by.format(format));
+                this.description, this.deadline.format(format));
     }
 
     /**
@@ -47,6 +57,6 @@ public class Deadline extends Task {
     public String toString() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern(DISPLAY_FORMAT, Locale.ENGLISH);
         return "[D]" + super.toString() + " (by: "
-                + this.by.format(format) + ")";
+                + this.deadline.format(format) + ")";
     }
 }
