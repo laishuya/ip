@@ -75,6 +75,9 @@ public class TaskList {
             }
             if (task instanceof Event) {
                 Event eventTask = (Event) task;
+                if (!eventTask.getStartDateTime().isAfter(currentTime)) {
+                    continue;
+                }
                 if (!eventTask.getEndDateTime().isBefore(reminderThreshold)) {
                     continue;
                 }
