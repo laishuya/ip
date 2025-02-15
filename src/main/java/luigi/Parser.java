@@ -9,9 +9,9 @@ import luigi.commands.ExitCommand;
 import luigi.commands.FindCommand;
 import luigi.commands.ListCommand;
 import luigi.commands.MarkCommand;
+import luigi.commands.RemindCommand;
 import luigi.commands.ToDoCommand;
 import luigi.commands.UnmarkCommand;
-import luigi.commands.RemindCommand;
 
 /**
  * Parses user input and returns a Command object to be executed by the Chatbot.

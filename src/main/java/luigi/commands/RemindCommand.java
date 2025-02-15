@@ -2,7 +2,6 @@ package luigi.commands;
 
 import luigi.Storage;
 import luigi.TaskList;
-import luigi.tasks.Task;
 import luigi.ui.Ui;
 
 /**
