@@ -30,9 +30,12 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Mario.png"));
     private Image luigiImage = new Image(this.getClass().getResourceAsStream("/images/Luigi.png"));
 
+    /**
+     * Boots up the Luigi chatbot.
+     */
     @FXML
     public void initialize() {
-        String greeting = "Hello! I'm Luigi!" +System.lineSeparator() + "How can I help you?";
+        String greeting = "Hello! I'm Luigi!" + System.lineSeparator() + "How can I help you?";
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().add(DialogBox.getLuigiDialog(greeting, luigiImage));
     }
