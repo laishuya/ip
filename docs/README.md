@@ -14,7 +14,7 @@ With Luigi, you can:
 - [x] [Get reminders on upcoming tasks](#get-reminders)
 
 ## To use Luigi
-1. Download the jar file from [here](https://github.com/laishuya/ip/releases/tag/v0.1/)
+1. Download the jar file from [here](https://github.com/laishuya/ip/releases/tag/v0.3)
 2. From your terminal, navigate to the directory where the jar file is in
 3. Simply type `java -jar luigi.jar` in your terminal to run Luigi 🤯
 
