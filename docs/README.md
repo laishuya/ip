@@ -9,13 +9,14 @@ A desktop app for managing tasks, optimized for use via a **Command Line Interfa
 With Luigi, you can:
 - [x] [Add todo, deadline and event tasks](#adding-tasks)
 - [x] [Delete tasks](#delete-tasks)
-- [x] [Mark and unmark tasks as done](markunmark-task-as-done)
-- [x] [Find tasks with the same date or keyword](find-tasks)
-- [x] [Get reminders on upcoming tasks](get-reminders)
+- [x] [Mark and unmark tasks as done](#markunmark-task-as-done)
+- [x] [Find tasks with the same date or keyword](#find-tasks)
+- [x] [Get reminders on upcoming tasks](#get-reminders)
 
 ## To use Luigi
-1. download the jar file from [here](https://github.com/laishuya/ip/releases/tag/v0.1/)
-2. type `java -jar luigi.jar` on your terminal to run Luigi 🤯
+1. Download the jar file from [here](https://github.com/laishuya/ip/releases/tag/v0.1/)
+2. From your terminal, navigate to the directory where the jar file is in
+3. Simply type `java -jar luigi.jar` in your terminal to run Luigi 🤯
 
 ## Adding tasks
 
