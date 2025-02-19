@@ -23,6 +23,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle("Luigi the Chatbot");
             fxmlLoader.<MainWindow>getController().setLuigi(luigi); // inject the Luigi instance
             stage.show();
         } catch (IOException e) {
