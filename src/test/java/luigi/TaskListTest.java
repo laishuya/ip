@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * The class that tests methods from the TaskList class.
+ */
 public class TaskListTest {
     @Test
     public void deleteTask_validIndex_removedSuccessfully() {
